@@ -11,7 +11,8 @@ public class Ship {
 
     public void getPlayerImage(){
         try{
-            ship = 5;
+            Entity.ship = ImageIO.read(getClass().getResourceAsStream("/Ship/APCS_Final_Ship.png"));
+
         }catch(IOException e){
             e.printStackTrace();
         }
