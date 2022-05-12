@@ -2,6 +2,7 @@ package entity;
 
 import javax.imageio.ImageIO;
 import java.io.IOException;
+import java.util.Objects;
 
 public class Ship {
 
@@ -11,7 +12,7 @@ public class Ship {
 
     public void getPlayerImage(){
         try{
-            Entity.ship = ImageIO.read(getClass().getResourceAsStream("/Ship/APCS_Final_Ship.png"));
+            Entity.ship = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Ship/APCS_Final_Ship.png")));
 
         }catch(IOException e){
             e.printStackTrace();
