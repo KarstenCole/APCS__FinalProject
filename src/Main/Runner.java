@@ -10,6 +10,7 @@ public class Runner {
         ImageIcon Background = new ImageIcon("APCS_Final_Map.png");
         JLabel label = new JLabel();
         label.setIcon(Background);
+        label.setBounds(0,0,800,800);
 
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -20,6 +21,7 @@ public class Runner {
         GamePanel gamePanel = new GamePanel();
         gamePanel.add(label);
         window.add(gamePanel);
+
 
         window.setSize(800,795);
 
