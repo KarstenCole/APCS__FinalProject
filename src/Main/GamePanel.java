@@ -1,5 +1,7 @@
 package Main;
 
+import entity.Ship;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,9 +13,11 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
 
     public final int SCREEN_HEIGHT = 800;
     public final int SCREEN_WIDTH = 800;
+    final int FPS = 60;
+
+    Ship ship = new Ship();
 
     JButton startButton;
-
 
     Thread gameThread;
 
@@ -23,7 +27,6 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
         this.setFocusable(true);
         this.setLayout(null);
         startScreen();
-
     }
 
     public void startGameThread(){
@@ -33,14 +36,42 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
 
     @Override
     public void run() {
-        startGameThread();
-        while(Running){
+            double drawInterval = 1000000000 / FPS;
+            double delta = 0;
+            long lastTime = System.nanoTime();
+            long currentTime;
+            long timer = 0;
+            int drawCount = 0;
 
 
-            System.out.print(" Running ");
+            while (gameThread != null) {
 
+                currentTime = System.nanoTime();
 
-        }
+                delta += (currentTime - lastTime) / drawInterval;
+                timer += currentTime - lastTime;
+                lastTime = currentTime;
+
+                if ((delta >= 1)&&(Running)) {
+                    update();
+                    repaint();
+                    delta--;
+                    drawCount++;
+                }
+
+                if (timer >= 1000000000) {
+                    System.out.println("FPS: " + drawCount);
+                    drawCount = 0;
+                    timer = 0;
+                }
+
+            }
+    }
+
+    private void update() {
+
+        ship.update();
+
     }
 
     public void startScreen(){
@@ -59,10 +90,20 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
 
     }
 
+    public void paintComponent(Graphics g) {
+
+        super.paintComponent(g);
+
+        Graphics2D g2 = (Graphics2D)g;
+
+        ship.draw(g2);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(startButton)){
             Running = true;
+            this.remove(startButton);
         }
     }
 }
