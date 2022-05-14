@@ -1,5 +1,6 @@
 package entity;
 
+import Main.GamePanel;
 import Main.KeyHandler;
 
 import javax.imageio.ImageIO;
@@ -10,15 +11,17 @@ import java.util.Objects;
 
 public class Ship extends Entity{
 
-    KeyHandler keyH = new KeyHandler();
+    KeyHandler keyH;
     public String direction;
     public int ShipX;
     public int ShipY;
 
-    public Ship(){
+    public Ship(KeyHandler keyH){
         ShipX = 365;
-        ShipY = 700;
+        this.keyH = keyH;
+        ShipY = 600;
         speed = 3;
+        direction = "";
         getPlayerImage();
     }
 
@@ -32,7 +35,10 @@ public class Ship extends Entity{
     }
 
     public void draw(Graphics2D g2d){
-        g2d.drawImage(ship, ShipX,ShipY, 70,70, null);
+        if(GamePanel.Running) {
+            g2d.drawImage(ship, ShipX, ShipY, 70, 70, null);
+            g2d.dispose();
+        }
     }
 
     public void update() {
@@ -52,13 +58,11 @@ public class Ship extends Entity{
             }
         }
 
-        if(direction!=null) {
-            switch (direction) {
-                case "up" -> ShipY -= speed;
-                case "down" -> ShipY += speed;
-                case "left" -> ShipX -= speed;
-                case "right" -> ShipX += speed;
-            }
+        switch (direction) {
+            case "up" -> ShipY -= speed;
+            case "down" -> ShipY += speed;
+            case "left" -> ShipX -= speed;
+            case "right" -> ShipX += speed;
         }
     }
 

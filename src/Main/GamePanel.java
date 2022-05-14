@@ -9,13 +9,15 @@ import java.awt.event.ActionListener;
 
 public class GamePanel extends JPanel implements Runnable, ActionListener {
 
-    public boolean Running = false;
+    public static boolean Running = false;
 
     public final int SCREEN_HEIGHT = 800;
     public final int SCREEN_WIDTH = 800;
     final int FPS = 60;
 
-    Ship ship = new Ship();
+    KeyHandler keyH = new KeyHandler();
+
+    public Ship ship = new Ship(keyH);
 
     JButton startButton;
 
@@ -26,6 +28,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
         this.setDoubleBuffered(true);
         this.setFocusable(true);
         this.setLayout(null);
+        this.addKeyListener(keyH);
         startScreen();
     }
 
@@ -97,6 +100,9 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
         Graphics2D g2 = (Graphics2D)g;
 
         ship.draw(g2);
+
+        //g2.dispose();
+
     }
 
     @Override
