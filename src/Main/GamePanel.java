@@ -1,5 +1,6 @@
 package Main;
 
+import entity.Map;
 import entity.Ship;
 
 import javax.swing.*;
@@ -19,16 +20,19 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
 
     public Ship ship = new Ship(keyH);
 
+    public Map map = new Map();
+
     JButton startButton;
 
     Thread gameThread;
 
-    public GamePanel(){
+    public GamePanel(JLabel Bg){
         this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));
         this.setDoubleBuffered(true);
         this.setFocusable(true);
         this.setLayout(null);
         this.addKeyListener(keyH);
+        this.add(Bg);
         startScreen();
     }
 
@@ -99,9 +103,11 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
 
         Graphics2D g2 = (Graphics2D)g;
 
+        map.draw(g2);
+
         ship.draw(g2);
 
-        //g2.dispose();
+        g2.dispose();
 
     }
 

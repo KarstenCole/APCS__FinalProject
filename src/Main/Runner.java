@@ -18,13 +18,11 @@ public class Runner {
         window.setResizable(false);
         window.setIconImage(image.getImage());
 
-        GamePanel gamePanel = new GamePanel();
-        gamePanel.add(label);
+        GamePanel gamePanel = new GamePanel(label);
         window.add(gamePanel);
 
 
         window.setSize(800,795);
-
         window.setLocationRelativeTo(null);
         window.setVisible(true);
 

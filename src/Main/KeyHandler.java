@@ -18,27 +18,18 @@ public class KeyHandler implements KeyListener {
 
         if(code == KeyEvent.VK_W){
             upPressed = true;
-            System.out.print("pressing button");
         }
         if(code == KeyEvent.VK_S){
             downPressed = true;
-            System.out.print("pressing button");
-
         }
         if(code == KeyEvent.VK_A){
             leftPressed = true;
-            System.out.print("pressing button");
-
         }
         if(code == KeyEvent.VK_D){
             rightPressed = true;
-            System.out.print("pressing button");
-
         }
         if(code == KeyEvent.VK_SPACE){
             spacePressed = true;
-            System.out.print("pressing button");
-
         }
     }
 

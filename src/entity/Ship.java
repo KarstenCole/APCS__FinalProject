@@ -28,6 +28,7 @@ public class Ship extends Entity{
     public void getPlayerImage(){
         try{
             ship = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Ship/APCS_Final_Ship.png")));
+            map = ImageIO.read(getClass().getResourceAsStream("/Maps/APCS_Final_Map.png"));
 
         }catch(IOException e){
             e.printStackTrace();
@@ -37,7 +38,6 @@ public class Ship extends Entity{
     public void draw(Graphics2D g2d){
         if(GamePanel.Running) {
             g2d.drawImage(ship, ShipX, ShipY, 70, 70, null);
-            g2d.dispose();
         }
     }
 
@@ -64,6 +64,8 @@ public class Ship extends Entity{
             case "left" -> ShipX -= speed;
             case "right" -> ShipX += speed;
         }
+
+        direction = "";
     }
 
 }
