@@ -13,13 +13,11 @@ public class Ship extends Entity{
 
     KeyHandler keyH;
     public String direction;
-    public int ShipX;
-    public int ShipY;
 
     public Ship(KeyHandler keyH){
-        ShipX = 365;
+        X = 365;
         this.keyH = keyH;
-        ShipY = 600;
+        Y = 600;
         speed = 3;
         direction = "";
         getPlayerImage();
@@ -28,7 +26,7 @@ public class Ship extends Entity{
     public void getPlayerImage(){
         try{
             ship = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Ship/APCS_Final_Ship.png")));
-            map = ImageIO.read(getClass().getResourceAsStream("/Maps/APCS_Final_Map.png"));
+            map = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Maps/APCS_Final_Map.png")));
 
         }catch(IOException e){
             e.printStackTrace();
@@ -37,7 +35,7 @@ public class Ship extends Entity{
 
     public void draw(Graphics2D g2d){
         if(GamePanel.Running) {
-            g2d.drawImage(ship, ShipX, ShipY, 70, 70, null);
+            g2d.drawImage(ship, X, Y, 70, 70, null);
         }
     }
 
@@ -58,11 +56,26 @@ public class Ship extends Entity{
             }
         }
 
+        switch(direction){
+            case "up":
+                if(Y<=0){ direction = "";}
+                break;
+            case "down":
+                if(Y>=757-ship.getHeight()){ direction = "";}
+                break;
+            case "right":
+                if(X>=788-ship.getWidth()){direction = "";}
+                break;
+            case "left":
+                if(X<=0) {direction = "";}
+                break;
+        }
+
         switch (direction) {
-            case "up" -> ShipY -= speed;
-            case "down" -> ShipY += speed;
-            case "left" -> ShipX -= speed;
-            case "right" -> ShipX += speed;
+            case "up" -> Y -= speed;
+            case "down" -> Y += speed;
+            case "left" -> X -= speed;
+            case "right" -> X += speed;
         }
 
         direction = "";
