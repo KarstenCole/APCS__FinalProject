@@ -64,7 +64,7 @@ public class Ship extends Entity{
                 if(Y>=757-ship.getHeight()){ direction = "";}
                 break;
             case "right":
-                if(X>=788-ship.getWidth()){direction = "";}
+                if(X>=787-ship.getWidth()){direction = "";}
                 break;
             case "left":
                 if(X<=0) {direction = "";}
