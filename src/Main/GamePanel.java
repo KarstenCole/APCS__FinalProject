@@ -1,6 +1,7 @@
 package Main;
 
 import entity.Map;
+import entity.Missile;
 import entity.Ship;
 
 import javax.swing.*;
@@ -21,6 +22,8 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
     public Ship ship = new Ship(keyH);
 
     public Map map = new Map();
+
+    Missile missile = new Missile(ship);
 
     JButton startButton;
 
@@ -104,6 +107,8 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
         Graphics2D g2 = (Graphics2D)g;
 
         map.draw(g2);
+
+      //  missile.draw(g2);
 
         ship.draw(g2);
 

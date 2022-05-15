@@ -13,6 +13,8 @@ public class Ship extends Entity{
 
     KeyHandler keyH;
     public String direction;
+    boolean missileFired = false;
+    Missile missile;
 
     public Ship(KeyHandler keyH){
         X = 365;
@@ -21,6 +23,7 @@ public class Ship extends Entity{
         speed = 3;
         direction = "";
         getPlayerImage();
+        missile = new Missile(this);
     }
 
     public void getPlayerImage(){
@@ -37,6 +40,13 @@ public class Ship extends Entity{
         if(GamePanel.Running) {
             g2d.drawImage(ship, X, Y, 70, 70, null);
         }
+        if(missileFired){
+            missile.draw(g2d);
+            missile.go();
+            if(missile.isOffMap()){
+                missileFired = false;
+            }
+        }
     }
 
     public void update() {
@@ -51,10 +61,16 @@ public class Ship extends Entity{
                 direction = "down";
             } else if (keyH.leftPressed) {
                 direction = "left";
-            } else {
+            } else if(keyH.rightPressed){
                 direction = "right";
             }
         }
+
+        if((keyH.spacePressed)&&(!missileFired)) {
+            missile.ResetMissile();
+            missileFired = true;
+        }
+
 
         switch(direction){
             case "up":
@@ -80,5 +96,15 @@ public class Ship extends Entity{
 
         direction = "";
     }
+
+    public int getShipX(){
+        return X;
+    }
+
+    public int getShipY(){
+        return Y;
+    }
+
+
 
 }
