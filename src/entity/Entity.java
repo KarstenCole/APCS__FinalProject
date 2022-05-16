@@ -6,7 +6,7 @@ public class Entity {
 
     public BufferedImage ship;
     public BufferedImage Enemy1,Enemy2,Enemy3;
-    public BufferedImage map;
+    public BufferedImage map, StartScreen;
     public BufferedImage Missile;
     public int X,Y;
 

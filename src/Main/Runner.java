@@ -7,7 +7,7 @@ public class Runner {
     public static void main(String[] args){
 
         ImageIcon image = new ImageIcon("APCS_Final_Ship.png");
-        ImageIcon Background = new ImageIcon("APCS_Final_Map.png");
+        ImageIcon Background = new ImageIcon("APCS_Final_StartScreen.png");
         JLabel label = new JLabel();
         label.setIcon(Background);
         label.setBounds(0,0,800,800);
@@ -22,7 +22,7 @@ public class Runner {
         window.add(gamePanel);
 
 
-        window.setSize(800,795);
+        window.setSize(800,800);
         window.setLocationRelativeTo(null);
         window.setVisible(true);
 
