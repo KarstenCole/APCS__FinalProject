@@ -108,8 +108,6 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
 
         map.draw(g2);
 
-      //  missile.draw(g2);
-
         ship.draw(g2);
 
         g2.dispose();

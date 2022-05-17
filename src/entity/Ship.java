@@ -16,6 +16,7 @@ public class Ship extends Entity{
     boolean missileFired = false;
     Missile missile;
 
+
     public Ship(KeyHandler keyH){
         X = 365;
         this.keyH = keyH;
