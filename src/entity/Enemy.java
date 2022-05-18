@@ -1,7 +1,5 @@
 package entity;
 
-import org.apache.batik.dom.util.XLinkSupport;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;

@@ -23,6 +23,8 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
 
     public Map map = new Map();
 
+    public EnemyGrid enemyGrid = new EnemyGrid();
+
     Missile missile = new Missile(ship);
 
     JButton startButton;
@@ -107,6 +109,8 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
         Graphics2D g2 = (Graphics2D)g;
 
         map.draw(g2);
+
+        enemyGrid.drawGrid(g2);
 
         ship.draw(g2);
 
