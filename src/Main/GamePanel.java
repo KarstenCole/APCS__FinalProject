@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GamePanel extends JPanel implements Runnable, ActionListener {
+public class GamePanel<ship> extends JPanel implements Runnable, ActionListener {
 
     public static boolean Running = false;
 
@@ -17,15 +17,15 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
     public final int SCREEN_WIDTH = 800;
     final int FPS = 60;
 
+    public Missile missile = new Missile();
+
     KeyHandler keyH = new KeyHandler();
 
-    public Ship ship = new Ship(keyH);
+    public Ship ship = new Ship(keyH,missile);
 
     public Map map = new Map();
 
-    public EnemyGrid enemyGrid = new EnemyGrid();
-
-    Missile missile = new Missile(ship);
+    public EnemyGrid enemyGrid = new EnemyGrid(missile);
 
     JButton startButton;
 
@@ -39,6 +39,8 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
         this.addKeyListener(keyH);
         this.add(Bg);
         startScreen();
+
+        missile.SetMissile(ship);
     }
 
     public void startGameThread(){
@@ -83,6 +85,8 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
     private void update() {
 
         ship.update();
+
+        enemyGrid.checkAllHitboxes();
 
     }
 

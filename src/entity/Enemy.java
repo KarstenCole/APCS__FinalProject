@@ -1,5 +1,7 @@
 package entity;
 
+import Main.GamePanel;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -10,11 +12,19 @@ public class Enemy extends Entity{
 
     BufferedImage Enemy;
     boolean Alive;
+    Missile missile;
+    int WIDTH,HEIGHT;
 
-    public Enemy(int EnemyNum, int X, int Y){
+    public Enemy(int EnemyNum, int X, int Y, Missile missile){
 
         this.X = X;
         this.Y = Y;
+
+        WIDTH = 60;
+        HEIGHT = 60;
+
+
+        this.missile = missile;
 
         Alive = true;
 
@@ -55,8 +65,30 @@ public class Enemy extends Entity{
 
     public void draw(Graphics2D g2d) {
         if(Alive){
-            g2d.drawImage(Enemy, X, Y, 60, 60, null);
+            g2d.drawImage(Enemy, X, Y, WIDTH, HEIGHT, null);
         }
+    }
+
+    public void checkHitbox(){
+
+        if((missile.getXPosition()>=X &&
+            missile.getXPosition()<=X+WIDTH &&
+            missile.getYPosition()>=Y &&
+            missile.getYPosition()<=Y+HEIGHT) ||
+                (missile.get2ndXPosition()>=X &&
+                missile.get2ndXPosition()<=X+WIDTH &&
+                missile.getYPosition()>=Y &&
+                missile.getYPosition()<=Y+HEIGHT)){
+
+            Alive = false;
+            missile.HitEnemy();
+            X = 0;
+            Y = 0;
+
+            System.out.println("I died");
+
+        }
+
     }
 
 }

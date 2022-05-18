@@ -17,14 +17,14 @@ public class Ship extends Entity{
     Missile missile;
 
 
-    public Ship(KeyHandler keyH){
+    public Ship(KeyHandler keyH, Missile missile){
         X = 365;
         this.keyH = keyH;
         Y = 600;
         speed = 3;
         direction = "";
         getPlayerImage();
-        missile = new Missile(this);
+        this.missile = missile;
     }
 
     public void getPlayerImage(){
@@ -44,7 +44,7 @@ public class Ship extends Entity{
         if(missileFired){
             missile.draw(g2d);
             missile.go();
-            if(missile.isOffMap()){
+            if(missile.isOffMap()||missile.shotEnemy()){
                 missileFired = false;
             }
         }
