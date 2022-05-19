@@ -4,12 +4,10 @@ import entity.Enemy;
 import entity.Missile;
 
 import java.awt.*;
-import java.util.Random;
 
 public class EnemyGrid {
 
     public Enemy[][] enemies;
- //  Random random = new Random();
     Missile missile;
 
     public EnemyGrid(Missile missile){
@@ -20,7 +18,7 @@ public class EnemyGrid {
         for(int x = 0; x<enemies.length; x++){
             for(int y = 0; y<enemies[0].length; y++){
 
-                enemies[x][y] = new Enemy(1,50+(x*87),20+(y*80), missile);
+                enemies[x][y] = new Enemy(1,(x*87),20+(y*80), missile);
 
             }
         }

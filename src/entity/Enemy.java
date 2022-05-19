@@ -14,6 +14,9 @@ public class Enemy extends Entity{
     boolean Alive;
     Missile missile;
     int WIDTH,HEIGHT;
+    boolean move = true;
+    int downARow = 0;
+    int inc = 1;
 
     public Enemy(int EnemyNum, int X, int Y, Missile missile){
 
@@ -64,8 +67,22 @@ public class Enemy extends Entity{
     }
 
     public void draw(Graphics2D g2d) {
-        if(Alive){
+        if(Alive) {
+
             g2d.drawImage(Enemy, X, Y, WIDTH, HEIGHT, null);
+
+            if (move) {
+                X += inc;
+                move = false;
+                downARow++;
+            } else {
+                move = true;
+            }
+            if (downARow == 120) {
+                inc *= -1;
+                Y += 20;
+                downARow = 0;
+            }
         }
     }
 
@@ -82,10 +99,8 @@ public class Enemy extends Entity{
 
             Alive = false;
             missile.HitEnemy();
-            X = 0;
-            Y = 0;
-
-            System.out.println("I died");
+            X = -1000;
+            Y = -1000;
 
         }
 
