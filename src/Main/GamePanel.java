@@ -17,6 +17,8 @@ public class GamePanel<ship> extends JPanel implements Runnable, ActionListener 
     public final int SCREEN_WIDTH = 800;
     final int FPS = 60;
 
+    public static boolean ShipAlive = true;
+
     public Missile missile = new Missile();
 
     KeyHandler keyH = new KeyHandler();
@@ -25,7 +27,7 @@ public class GamePanel<ship> extends JPanel implements Runnable, ActionListener 
 
     public Map map = new Map();
 
-    public EnemyGrid enemyGrid = new EnemyGrid(missile);
+    public EnemyGrid enemyGrid = new EnemyGrid(missile,ship);
 
     JButton startButton;
 
@@ -79,12 +81,18 @@ public class GamePanel<ship> extends JPanel implements Runnable, ActionListener 
                     timer = 0;
                 }
 
+                if(ShipAlive == false){
+                    repaint();
+                }
+
             }
     }
 
     private void update() {
 
         ship.update();
+
+        enemyGrid.checkShipIntersection();
 
         enemyGrid.checkAllHitboxes();
 
@@ -107,20 +115,30 @@ public class GamePanel<ship> extends JPanel implements Runnable, ActionListener 
     }
 
     public void paintComponent(Graphics g) {
-
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D)g;
 
-        map.draw(g2);
+        if(!ShipAlive){
+            map.draw(g2);
 
-        enemyGrid.drawGrid(g2);
+            g2.dispose();
+        }
+        else {
 
-        ship.draw(g2);
+            map.draw(g2);
 
-        g2.dispose();
+            enemyGrid.drawGrid(g2);
+
+            ship.draw(g2);
+
+            g2.dispose();
+        }
+
+
 
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {

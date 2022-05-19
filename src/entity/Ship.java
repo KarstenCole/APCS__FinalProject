@@ -15,11 +15,15 @@ public class Ship extends Entity{
     public String direction;
     boolean missileFired = false;
     Missile missile;
+    public static int WIDTH;
+    public static int HEIGHT;
 
 
     public Ship(KeyHandler keyH, Missile missile){
         X = 365;
         this.keyH = keyH;
+        WIDTH = 70;
+        HEIGHT = 70;
         Y = 600;
         speed = 3;
         direction = "";
@@ -39,7 +43,7 @@ public class Ship extends Entity{
 
     public void draw(Graphics2D g2d){
         if(GamePanel.Running) {
-            g2d.drawImage(ship, X, Y, 70, 70, null);
+            g2d.drawImage(ship, X, Y, WIDTH, HEIGHT, null);
         }
         if(missileFired){
             missile.draw(g2d);
@@ -105,7 +109,5 @@ public class Ship extends Entity{
     public int getShipY(){
         return Y;
     }
-
-
 
 }

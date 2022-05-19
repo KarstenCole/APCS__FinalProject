@@ -1,7 +1,5 @@
 package entity;
 
-import Main.GamePanel;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -104,6 +102,14 @@ public class Enemy extends Entity{
 
         }
 
+    }
+
+    public int getWidth(){
+        return Enemy.getWidth();
+    }
+
+    public int getHeight(){
+        return Enemy.getHeight();
     }
 
 }
