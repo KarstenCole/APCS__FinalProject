@@ -57,14 +57,12 @@ public class EnemyGrid {
                         ship.getShipX()<=enemy[y].X+ enemy[y].getWidth() &&
                         ship.getShipY()>=enemy[y].Y &&
                         ship.getShipY()<=enemy[y].Y+enemy[y].getHeight()) ||
-                        (ship.getShipX()+ship.WIDTH>=enemy[y].X &&
+                        (ship.getShipX()+ ship.WIDTH >=enemy[y].X &&
                         ship.getShipX()+ship.WIDTH<=enemy[y].X+enemy[y].getWidth() &&
                         ship.getShipY()>=enemy[y].Y &&
                         ship.getShipY()<=enemy[y].Y+enemy[y].getHeight())){
 
                         GamePanel.ShipAlive = false;
-
-
 
                     }
 

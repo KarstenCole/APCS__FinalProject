@@ -9,12 +9,16 @@ import java.util.Objects;
 public class Enemy extends Entity{
 
     BufferedImage Enemy;
-    boolean Alive;
+    public boolean Alive;
     Missile missile;
     int WIDTH,HEIGHT;
     boolean move = true;
     int downARow = 0;
     int inc = 1;
+
+    public BufferedImage Missile;
+    int MissileX;
+    int MissileY;
 
     public Enemy(int EnemyNum, int X, int Y, Missile missile){
 
@@ -22,7 +26,7 @@ public class Enemy extends Entity{
         this.Y = Y;
 
         WIDTH = 60;
-        HEIGHT = 60;
+        HEIGHT = 45;
 
 
         this.missile = missile;
@@ -37,6 +41,7 @@ public class Enemy extends Entity{
         if(EnemyNum == 1) {
             try {
                 Enemy = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/APCS_Final_Enemy1.png")));
+                Missile = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/EnemyMissiles/APCS_Final_Enemy1Missile.png")));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -44,6 +49,8 @@ public class Enemy extends Entity{
         if(EnemyNum == 2) {
             try {
                 Enemy = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/APCS_Final_Enemy2.png")));
+                Missile = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/EnemyMissiles/APCS_Final_Enemy2Missile.png")));
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -51,6 +58,8 @@ public class Enemy extends Entity{
         if(EnemyNum == 3) {
             try {
                 Enemy = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/APCS_Final_Enemy3.png")));
+                Missile = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/EnemyMissiles/APCS_Final_Enemy3Missile.png")));
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -58,6 +67,7 @@ public class Enemy extends Entity{
         if(EnemyNum == 4) {
             try {
                 Enemy = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/APCS_Final_Enemy4.png")));
+                Missile = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/EnemyMissiles/APCS_Final_Enemy1Missile.png")));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -69,7 +79,7 @@ public class Enemy extends Entity{
 
             g2d.drawImage(Enemy, X, Y, WIDTH, HEIGHT, null);
 
-            if (move) {
+            /*if (move) {
                 X += inc;
                 move = false;
                 downARow++;
@@ -80,7 +90,7 @@ public class Enemy extends Entity{
                 inc *= -1;
                 Y += 20;
                 downARow = 0;
-            }
+            }*/
         }
     }
 
@@ -110,6 +120,12 @@ public class Enemy extends Entity{
 
     public int getHeight(){
         return Enemy.getHeight();
+    }
+
+    public void shootMissile(){
+
+
+
     }
 
 }
