@@ -25,7 +25,7 @@ public class Ship extends Entity{
         WIDTH = 70;
         HEIGHT = 70;
         Y = 600;
-        speed = 3;
+        speed = 4;
         direction = "";
         getPlayerImage();
         this.missile = missile;

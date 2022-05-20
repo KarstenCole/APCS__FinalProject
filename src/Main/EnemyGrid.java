@@ -71,5 +71,17 @@ public class EnemyGrid {
         }
     }
 
+    public void fireRandomMissile(){
+
+        int randomInt = (int)(Math.random()*8);
+
+        enemies[randomInt][3].shootMissile();
+
+
+
+
+
+    }
+
 
 }
