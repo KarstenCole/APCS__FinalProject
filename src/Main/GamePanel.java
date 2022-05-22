@@ -9,13 +9,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GamePanel<ship> extends JPanel implements Runnable, ActionListener {
+public class GamePanel extends JPanel implements Runnable, ActionListener {
 
     public static boolean Running = false;
 
     public final int SCREEN_HEIGHT = 800;
     public final int SCREEN_WIDTH = 800;
     final int FPS = 60;
+    int fire = 0;
 
     public static boolean ShipAlive = true;
 
@@ -76,6 +77,13 @@ public class GamePanel<ship> extends JPanel implements Runnable, ActionListener 
                 }
 
                 if (timer >= 1000000000) {
+
+                    fire ++;
+                    if((Running&&fire>=2)){
+                        enemyGrid.fireRandomMissile();
+                        fire = 0;
+                    }
+
                     System.out.println("FPS: " + drawCount);
                     drawCount = 0;
                     timer = 0;

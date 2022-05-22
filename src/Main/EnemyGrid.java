@@ -21,7 +21,8 @@ public class EnemyGrid {
         for(int x = 0; x<enemies.length; x++){
             for(int y = 0; y<enemies[0].length; y++){
 
-                enemies[x][y] = new Enemy(1,(x*87),20+(y*80), missile);
+
+                enemies[x][y] = new Enemy((int) (Math.random() * 4) +1,(x*87),20+(y*80), missile);
 
             }
         }
@@ -53,14 +54,20 @@ public class EnemyGrid {
             for (Enemy[] enemy : enemies) {
                 for (int y = 0; y < enemies[0].length; y++) {
 
-                    if((ship.getShipX()>=enemy[y].X &&
-                        ship.getShipX()<=enemy[y].X+ enemy[y].getWidth() &&
-                        ship.getShipY()>=enemy[y].Y &&
-                        ship.getShipY()<=enemy[y].Y+enemy[y].getHeight()) ||
+                    if(
+
+                        ((ship.getShipX()>=enemy[y].X &&
+                        ship.getShipX()<=enemy[y].X+ enemy[y].getWidth()) ||
                         (ship.getShipX()+ ship.WIDTH >=enemy[y].X &&
-                        ship.getShipX()+ship.WIDTH<=enemy[y].X+enemy[y].getWidth() &&
-                        ship.getShipY()>=enemy[y].Y &&
-                        ship.getShipY()<=enemy[y].Y+enemy[y].getHeight())){
+                        ship.getShipX()+ship.WIDTH <=enemy[y].X+enemy[y].getWidth())) &&
+
+                        ((ship.getShipY()>=enemy[y].Y &&
+                        ship.getShipY()<=enemy[y].Y+enemy[y].getHeight())  ||
+                        (ship.getShipY()+ship.HEIGHT>=enemy[y].Y &&
+                        ship.getShipY()+ship.HEIGHT<=enemy[y].Y+enemy[y].getHeight()))
+
+
+                    ){
 
                         GamePanel.ShipAlive = false;
 
@@ -75,10 +82,22 @@ public class EnemyGrid {
 
         int randomInt = (int)(Math.random()*8);
 
-        enemies[randomInt][3].shootMissile();
+        /*if(enemies[randomInt][2].Alive) {
+            enemies[randomInt][2].shootMissile();
+        }*/
 
 
+        for(int i=enemies[randomInt].length-1; i>=0; i--){
 
+            if(enemies[randomInt][i].Alive){
+
+                System.out.print(randomInt+", "+i);
+                enemies[randomInt][i].shootMissile();
+                break;
+
+            }
+
+        }
 
 
     }
