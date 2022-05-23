@@ -22,7 +22,7 @@ public class EnemyGrid {
             for(int y = 0; y<enemies[0].length; y++){
 
 
-                enemies[x][y] = new Enemy((int) (Math.random() * 4) +1,(x*87),20+(y*80), missile);
+                enemies[x][y] = new Enemy((int) (Math.random() * 4) + 1,(x*87),100 +(y*80), missile);
 
             }
         }
@@ -78,29 +78,44 @@ public class EnemyGrid {
         }
     }
 
-    public void fireRandomMissile(){
+    public boolean fireRandomMissile(){
+        if(someOneAlive()) {
+            int randomInt = (int) (Math.random() * 8);
 
-        int randomInt = (int)(Math.random()*8);
+            for (int i = enemies[randomInt].length - 1; i >= 0; i--) {
 
-        /*if(enemies[randomInt][2].Alive) {
-            enemies[randomInt][2].shootMissile();
-        }*/
+                if (enemies[randomInt][i].Alive) {
 
+                    System.out.print(randomInt + ", " + i);
+                    enemies[randomInt][i].shootMissile();
+                    return true;
 
-        for(int i=enemies[randomInt].length-1; i>=0; i--){
-
-            if(enemies[randomInt][i].Alive){
-
-                System.out.print(randomInt+", "+i);
-                enemies[randomInt][i].shootMissile();
-                break;
+                }
 
             }
-
+            fireRandomMissile();
         }
-
-
+        return false;
     }
 
+    public boolean someOneAlive(){
+
+        for(int x = 0; x<enemies.length; x++){
+            for(int y = 0; y<enemies[0].length; y++) {
+            if(enemies[x][y].Alive){ return true; }
+            }
+        }
+
+        return false;
+    }
+
+    public void checkallMissiles(){
+
+        for(int x = 0; x<enemies.length; x++){
+            for(int y = 0; y<enemies[0].length; y++) {
+                enemies[x][y].checkMissile();
+            }
+        }
+    }
 
 }

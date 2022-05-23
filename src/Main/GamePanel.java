@@ -104,6 +104,8 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
 
         enemyGrid.checkAllHitboxes();
 
+        enemyGrid.checkallMissiles();
+
     }
 
     public void startScreen(){
@@ -134,6 +136,11 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
         }
         else {
 
+            g.setColor(Color.WHITE);
+            g.setFont( new Font("Ink Free",Font.BOLD,40));
+            FontMetrics metrics = getFontMetrics(g.getFont());
+            g.drawString("SCORE:",0,0);
+
             map.draw(g2);
 
             enemyGrid.drawGrid(g2);
@@ -141,6 +148,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
             ship.draw(g2);
 
             g2.dispose();
+            g.dispose();
         }
 
 

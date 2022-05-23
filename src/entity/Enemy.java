@@ -95,13 +95,12 @@ public class Enemy extends Entity{
                 Y += 20;
                 downARow = 0;
             }
+        }
+        if(missileFired){
 
-            if(missileFired){
+            MissileY+=speed+1;
 
-                MissileY+=speed+1;
-
-                g2d.drawImage(Missile, MissileX,MissileY,null);
-            }
+            g2d.drawImage(Missile, MissileX,MissileY,null);
         }
     }
 
@@ -135,11 +134,22 @@ public class Enemy extends Entity{
 
     public void shootMissile(){
 
-        System.out.print(" shot missile ");
 
-        missileFired = true;
-        MissileX = X+WIDTH/2-5;
-        MissileY = Y+HEIGHT;
+        //System.out.print(" shot missile ");
+        if(!missileFired) {
+            missileFired = true;
+            MissileX = X + WIDTH / 2 - 5;
+            MissileY = Y + HEIGHT;
+        }
+
+    }
+
+    public void checkMissile(){
+
+        if(MissileY>800){
+            missileFired = false;
+        }
+
 
     }
 
