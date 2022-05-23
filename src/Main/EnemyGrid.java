@@ -22,7 +22,7 @@ public class EnemyGrid {
             for(int y = 0; y<enemies[0].length; y++){
 
 
-                enemies[x][y] = new Enemy((int) (Math.random() * 4) + 1,(x*87),100 +(y*80), missile);
+                enemies[x][y] = new Enemy((int) (Math.random() * 4) + 1,(x*87),80 +(y*80), missile);
 
             }
         }

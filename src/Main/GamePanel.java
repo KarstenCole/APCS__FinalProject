@@ -136,11 +136,11 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
         }
         else {
 
-            g.setColor(Color.WHITE);
+            /*g.setColor(Color.WHITE);
             g.setFont( new Font("Ink Free",Font.BOLD,40));
             FontMetrics metrics = getFontMetrics(g.getFont());
-            g.drawString("SCORE:",0,0);
-
+            g.drawString("SCORE:",(SCREEN_WIDTH-metrics.stringWidth("SCORE:"))/2,g.getFont().getSize());
+*/
             map.draw(g2);
 
             enemyGrid.drawGrid(g2);
@@ -148,7 +148,6 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
             ship.draw(g2);
 
             g2.dispose();
-            g.dispose();
         }
 
 
