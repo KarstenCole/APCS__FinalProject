@@ -6,6 +6,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -13,11 +14,26 @@ import java.util.concurrent.ThreadPoolExecutor;
 public class Map extends Entity{
 
     BufferedImage ThreeHearts, TwoHearts, OneHeart;
+    Font font;
 
     public Map() {
         getMapImage();
+        getFont();
     }
 
+    public void getFont(){
+
+        try{
+
+            font = Font.createFont(Font.TRUETYPE_FONT, new File("SM.TTF")).deriveFont(30f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("SM.TTF")));
+
+        }catch(IOException | FontFormatException e){
+
+        }
+
+    }
     public void getMapImage() {
         try {
             map = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Maps/APCS_Final_Map.png")));
@@ -37,7 +53,7 @@ public class Map extends Entity{
 
             g2d.drawImage(map, 0, 0, 800, 800, null);
             g2d.setColor(new Color(214, 214, 214));
-            g2d.setFont(new Font("Sans",Font.BOLD,35));
+            g2d.setFont(font);
             g2d.drawString("2543000000",235,55);
             g2d.drawImage(TwoHearts, 20,700,140,40,null);
 
