@@ -2,6 +2,7 @@ package Main;
 
 import entity.Enemy;
 import entity.Missile;
+import entity.Map;
 import entity.Ship;
 
 import java.awt.*;
@@ -11,10 +12,13 @@ public class EnemyGrid {
     public Enemy[][] enemies;
     Missile missile;
     Ship ship;
+    int Level = 1;
+    Map map;
 
-    public EnemyGrid(Missile missile, Ship s){
+    public EnemyGrid(Missile missile, Ship s, Map map){
         this.missile = missile;
         ship = s;
+        this.map = map;
 
         enemies = new Enemy[8][3];
 
@@ -116,6 +120,22 @@ public class EnemyGrid {
                 enemies[x][y].checkMissile();
             }
         }
+    }
+
+    public void updateScore(){
+
+
+
+        for(int x = 0; x<enemies.length; x++){
+            for(int y = 0; y<enemies[0].length; y++) {
+                if(!enemies[x][y].Alive){
+
+                    map.increaseScore(enemies[x][y],enemies[x][y].value*Level);
+
+                }
+            }
+        }
+
     }
 
 }

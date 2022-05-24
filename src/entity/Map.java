@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.concurrent.ThreadPoolExecutor;
 
@@ -15,17 +16,20 @@ public class Map extends Entity{
 
     BufferedImage ThreeHearts, TwoHearts, OneHeart;
     Font font;
+    public int score;
+    ArrayList<Enemy> deadEnemies = new ArrayList<>();
 
     public Map() {
         getMapImage();
         getFont();
+        score = 0;
     }
 
     public void getFont(){
 
         try{
 
-            font = Font.createFont(Font.TRUETYPE_FONT, new File("SM.TTF")).deriveFont(30f);
+            font = Font.createFont(Font.TRUETYPE_FONT, new File("m42.TTF")).deriveFont(25f);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("SM.TTF")));
 
@@ -54,7 +58,7 @@ public class Map extends Entity{
             g2d.drawImage(map, 0, 0, 800, 800, null);
             g2d.setColor(new Color(255, 255, 255));
             g2d.setFont(font);
-            g2d.drawString("0",235,55);
+            g2d.drawString("SCORE: "+score,30,55);
             g2d.drawImage(TwoHearts, 20,700,140,40,null);
 
         } else if(GamePanel.ShipAlive){
@@ -66,5 +70,14 @@ public class Map extends Entity{
             g2d.drawImage(DeathScreen, 0, 0, 800, 800, null);
 
         }
+    }
+
+    public void increaseScore(Enemy enemy, int inc){
+
+        if(!deadEnemies.contains(enemy)){
+            deadEnemies.add(enemy);
+            score += inc;
+        }
+
     }
 }

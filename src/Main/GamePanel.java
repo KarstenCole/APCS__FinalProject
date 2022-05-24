@@ -28,7 +28,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
 
     public Map map = new Map();
 
-    public EnemyGrid enemyGrid = new EnemyGrid(missile,ship);
+    public EnemyGrid enemyGrid = new EnemyGrid(missile,ship,map);
 
     JButton startButton;
 
@@ -106,6 +106,8 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
 
         enemyGrid.checkallMissiles();
 
+        enemyGrid.updateScore();
+
     }
 
     public void startScreen(){
@@ -136,11 +138,6 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
         }
         else {
 
-            /*g.setColor(Color.WHITE);
-            g.setFont( new Font("Ink Free",Font.BOLD,40));
-            FontMetrics metrics = getFontMetrics(g.getFont());
-            g.drawString("SCORE:",(SCREEN_WIDTH-metrics.stringWidth("SCORE:"))/2,g.getFont().getSize());
-*/
             map.draw(g2);
 
             enemyGrid.drawGrid(g2);

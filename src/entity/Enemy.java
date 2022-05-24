@@ -16,6 +16,7 @@ public class Enemy extends Entity{
     boolean move = true;
     int downARow = 0;
     int inc = 1;
+    public int value;
 
     public BufferedImage Missile;
     int MissileX=0;
@@ -26,6 +27,18 @@ public class Enemy extends Entity{
         this.X = X;
         this.Y = Y;
 
+        if(EnemyNum == 1){
+            value = 20;
+        }
+        if(EnemyNum == 2){
+            value = 30;
+        }
+        if(EnemyNum == 3){
+            value = 40;
+        }
+        if(EnemyNum == 4){
+            value = 50;
+        }
 
         this.missile = missile;
 
