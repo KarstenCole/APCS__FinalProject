@@ -52,9 +52,9 @@ public class Map extends Entity{
         if (GamePanel.Running && GamePanel.ShipAlive) {
 
             g2d.drawImage(map, 0, 0, 800, 800, null);
-            g2d.setColor(new Color(214, 214, 214));
+            g2d.setColor(new Color(255, 255, 255));
             g2d.setFont(font);
-            g2d.drawString("2543000000",235,55);
+            g2d.drawString("0",235,55);
             g2d.drawImage(TwoHearts, 20,700,140,40,null);
 
         } else if(GamePanel.ShipAlive){
