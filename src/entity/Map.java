@@ -3,13 +3,16 @@ package entity;
 import Main.GamePanel;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
+import java.util.concurrent.ThreadPoolExecutor;
 
-public class Map extends Entity {
+public class Map extends Entity{
 
-    boolean startIsDeath = true;
+    BufferedImage ThreeHearts, TwoHearts, OneHeart;
 
     public Map() {
         getMapImage();
@@ -20,7 +23,9 @@ public class Map extends Entity {
             map = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Maps/APCS_Final_Map.png")));
             StartScreen = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Maps/APCS_Final_StartScreen.png")));
             DeathScreen = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Maps/APCS_Final_DeathScreen.png")));
-
+            ThreeHearts = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Maps/Lives/APCS_Final_3Lives.png")));
+            TwoHearts = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Maps/Lives/APCS_Final_2Lives.png")));
+            OneHeart = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Maps/Lives/APCS_Final_1Lives.png")));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -29,14 +34,21 @@ public class Map extends Entity {
 
     public void draw(Graphics2D g2d) {
         if (GamePanel.Running && GamePanel.ShipAlive) {
-            g2d.drawImage(map, 0, 0, 800, 800, null);
 
+            g2d.drawImage(map, 0, 0, 800, 800, null);
+            g2d.setColor(new Color(214, 214, 214));
+            g2d.setFont(new Font("Sans",Font.BOLD,35));
+            g2d.drawString("2543000000",235,55);
+            g2d.drawImage(TwoHearts, 20,700,140,40,null);
 
         } else if(GamePanel.ShipAlive){
+
             g2d.drawImage(StartScreen, 0, 0, 800, 800, null);
+
         }else{
 
             g2d.drawImage(DeathScreen, 0, 0, 800, 800, null);
+
         }
     }
 }
