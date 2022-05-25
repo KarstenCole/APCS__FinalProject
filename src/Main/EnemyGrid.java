@@ -26,9 +26,32 @@ public class EnemyGrid {
             for(int y = 0; y<enemies[0].length; y++){
 
 
-                enemies[x][y] = new Enemy((int) (Math.random() * 4) + 1,(x*87),80 +(y*80), missile);
+                enemies[x][y] = new Enemy((int) (Math.random() * 4) + 1,(x*87),80 +(y*80), missile, ship);
 
             }
+        }
+
+    }
+
+    public void update(){
+        if(Ship.SHIP_LOST_A_LIFE){
+
+            updateScore();
+
+            checkForNewLevel();
+
+            checkAllHitboxes();
+
+        }else {
+            checkShipIntersection();
+
+            checkAllHitboxes();
+
+            checkallMissiles();
+
+            updateScore();
+
+            checkForNewLevel();
         }
 
     }
@@ -73,7 +96,7 @@ public class EnemyGrid {
 
                     ){
 
-                        GamePanel.ShipAlive = false;
+                        ship.loseALife();
 
                     }
 
@@ -124,8 +147,6 @@ public class EnemyGrid {
 
     public void updateScore(){
 
-
-
         for(int x = 0; x<enemies.length; x++){
             for(int y = 0; y<enemies[0].length; y++) {
                 if(!enemies[x][y].Alive){
@@ -137,5 +158,32 @@ public class EnemyGrid {
         }
 
     }
+
+   public boolean checkForNewLevel(){
+
+       for(int x = 0; x<enemies.length; x++) {
+           for (int y = 0; y < enemies[0].length; y++) {
+               if (enemies[x][y].Alive) {
+                    return false;
+               }
+           }
+       }
+       startNewLevel();
+       return true;
+
+   }
+
+   public void startNewLevel(){
+        Level++;
+       for(int x = 0; x<enemies.length; x++){
+           for(int y = 0; y<enemies[0].length; y++){
+
+
+               enemies[x][y] = new Enemy((int) (Math.random() * 4) + 1,(x*87),80 +(y*80), missile, ship);
+
+           }
+       }
+
+   }
 
 }

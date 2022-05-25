@@ -59,7 +59,16 @@ public class Map extends Entity{
             g2d.setColor(new Color(255, 255, 255));
             g2d.setFont(font);
             g2d.drawString("SCORE: "+score,30,55);
-            g2d.drawImage(TwoHearts, 20,700,140,40,null);
+
+            if(Ship.LIVES==2) {
+                g2d.drawImage(TwoHearts, 20, 700, 140, 40, null);
+            }
+            if(Ship.LIVES==3) {
+                g2d.drawImage(ThreeHearts, 20, 700, 140, 40, null);
+            }
+            if(Ship.LIVES==1) {
+                g2d.drawImage(OneHeart, 20, 700, 140, 40, null);
+            }
 
         } else if(GamePanel.ShipAlive){
 

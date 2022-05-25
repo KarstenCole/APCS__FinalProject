@@ -17,6 +17,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
     public final int SCREEN_WIDTH = 800;
     final int FPS = 60;
     int fire = 0;
+    int x = 0;
 
     public static boolean ShipAlive = true;
 
@@ -33,6 +34,8 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
     JButton startButton;
 
     Thread gameThread;
+
+    boolean FLICKER;
 
     public GamePanel(JLabel Bg){
         this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));
@@ -84,6 +87,16 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
                         fire = 0;
                     }
 
+                    FLICKER = !FLICKER;
+
+                    if (Ship.SHIP_LOST_A_LIFE){
+                        x++;
+                        if(x>3){
+                            Ship.SHIP_LOST_A_LIFE = false;
+                            x = 0;
+                        }
+                    }
+
                     System.out.println("FPS: " + drawCount);
                     drawCount = 0;
                     timer = 0;
@@ -100,13 +113,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
 
         ship.update();
 
-        enemyGrid.checkShipIntersection();
-
-        enemyGrid.checkAllHitboxes();
-
-        enemyGrid.checkallMissiles();
-
-        enemyGrid.updateScore();
+        enemyGrid.update();
 
     }
 

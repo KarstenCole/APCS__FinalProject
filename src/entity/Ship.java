@@ -17,6 +17,8 @@ public class Ship extends Entity{
     Missile missile;
     public static int WIDTH;
     public static int HEIGHT;
+    public static int LIVES = 3;
+    public static boolean SHIP_LOST_A_LIFE = false;
 
 
     public Ship(KeyHandler keyH, Missile missile){
@@ -45,7 +47,7 @@ public class Ship extends Entity{
         if(GamePanel.Running) {
             g2d.drawImage(ship, X, Y, WIDTH, HEIGHT, null);
         }
-        if(missileFired){
+        if(missileFired&&!SHIP_LOST_A_LIFE){
             missile.draw(g2d);
             missile.go();
             if(missile.isOffMap()||missile.shotEnemy()){
@@ -108,6 +110,22 @@ public class Ship extends Entity{
 
     public int getShipY(){
         return Y;
+    }
+
+    public int getWidth(){ return WIDTH;}
+
+    public int getHeight(){ return HEIGHT;}
+
+    public void loseALife(){
+
+        LIVES--;
+        if(LIVES == 0){
+            GamePanel.ShipAlive = false;
+        }
+        SHIP_LOST_A_LIFE = true;
+
+        Y = 600;
+        X = 365;
     }
 
 }

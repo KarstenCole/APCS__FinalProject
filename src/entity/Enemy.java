@@ -1,5 +1,7 @@
 package entity;
 
+import Main.GamePanel;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -21,11 +23,14 @@ public class Enemy extends Entity{
     public BufferedImage Missile;
     int MissileX=0;
     int MissileY=0;
+    Ship ship;
 
-    public Enemy(int EnemyNum, int X, int Y, Missile missile){
+    public Enemy(int EnemyNum, int X, int Y, Missile missile, Ship ship){
 
         this.X = X;
         this.Y = Y;
+
+        this.ship = ship;
 
         if(EnemyNum == 1){
             value = 20;
@@ -161,6 +166,20 @@ public class Enemy extends Entity{
 
         if(MissileY>800){
             missileFired = false;
+        }
+
+        if((MissileX >= ship.getShipX() &&
+            MissileX <= ship.getShipX()+ship.getWidth()&&
+            MissileY >= ship.getShipY() &&
+            MissileY <= ship.getShipY()+ship.getHeight()) ||
+
+            (MissileX+Missile.getWidth()>=ship.getShipX() &&
+            MissileX+Missile.getWidth()<=ship.getShipX()+ship.getWidth() &&
+            MissileY >= ship.getShipY() &&
+            MissileY <= ship.getShipY()+ship.getHeight())){
+
+            ship.loseALife();
+
         }
 
 
