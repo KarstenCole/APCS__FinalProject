@@ -1,5 +1,6 @@
 package entity;
 
+import Main.EnemyGrid;
 import Main.GamePanel;
 
 import javax.imageio.ImageIO;
@@ -59,6 +60,8 @@ public class Map extends Entity{
             g2d.setColor(new Color(255, 255, 255));
             g2d.setFont(font);
             g2d.drawString("SCORE: "+score,30,55);
+            g2d.drawString("LEVEL: "+ EnemyGrid.Level,500,55);
+
 
             if(Ship.LIVES==2) {
                 g2d.drawImage(TwoHearts, 20, 700, 140, 40, null);
@@ -77,6 +80,8 @@ public class Map extends Entity{
         }else{
 
             g2d.drawImage(DeathScreen, 0, 0, 800, 800, null);
+            g2d.drawString("SCORE: "+score,30,55);
+            g2d.drawString("LEVEL: "+ EnemyGrid.Level,500,55);
 
         }
     }

@@ -37,6 +37,7 @@ public class Ship extends Entity{
         try{
             ship = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Ship/APCS_Final_Ship.png")));
             map = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Maps/APCS_Final_Map.png")));
+            shipWShield = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Ship/APCS_Final_ShipWShield.png")));
 
         }catch(IOException e){
             e.printStackTrace();
@@ -45,9 +46,13 @@ public class Ship extends Entity{
 
     public void draw(Graphics2D g2d){
         if(GamePanel.Running) {
-            g2d.drawImage(ship, X, Y, WIDTH, HEIGHT, null);
+            if(SHIP_LOST_A_LIFE){
+                g2d.drawImage(shipWShield, X - 15, Y - 10, WIDTH + 30, HEIGHT + 30, null);
+            }else {
+                g2d.drawImage(ship, X, Y, WIDTH, HEIGHT, null);
+            }
         }
-        if(missileFired&&!SHIP_LOST_A_LIFE){
+        if(missileFired){
             missile.draw(g2d);
             missile.go();
             if(missile.isOffMap()||missile.shotEnemy()){
@@ -57,51 +62,62 @@ public class Ship extends Entity{
     }
 
     public void update() {
-        if (keyH.upPressed ||
-                keyH.leftPressed ||
-                keyH.rightPressed ||
-                keyH.downPressed) {
+        if(!GamePanel.SHIP_CANT_MOVE) {
+            if (keyH.upPressed ||
+                    keyH.leftPressed ||
+                    keyH.rightPressed ||
+                    keyH.downPressed) {
 
-            if (keyH.upPressed) {
-                direction = "up";
-            } else if (keyH.downPressed) {
-                direction = "down";
-            } else if (keyH.leftPressed) {
-                direction = "left";
-            } else if(keyH.rightPressed){
-                direction = "right";
+                if (keyH.upPressed) {
+                    direction = "up";
+                } else if (keyH.downPressed) {
+                    direction = "down";
+                } else if (keyH.leftPressed) {
+                    direction = "left";
+                } else if (keyH.rightPressed) {
+                    direction = "right";
+                }
             }
+            if(!SHIP_LOST_A_LIFE) {
+                if ((keyH.spacePressed) && (!missileFired)) {
+                    missile.ResetMissile();
+                    missileFired = true;
+                }
+            }
+
+
+            switch (direction) {
+                case "up":
+                    if (Y <= 0) {
+                        direction = "";
+                    }
+                    break;
+                case "down":
+                    if (Y >= 757 - ship.getHeight()) {
+                        direction = "";
+                    }
+                    break;
+                case "right":
+                    if (X >= 787 - ship.getWidth()) {
+                        direction = "";
+                    }
+                    break;
+                case "left":
+                    if (X <= 0) {
+                        direction = "";
+                    }
+                    break;
+            }
+
+            switch (direction) {
+                case "up" -> Y -= speed;
+                case "down" -> Y += speed;
+                case "left" -> X -= speed;
+                case "right" -> X += speed;
+            }
+
+            direction = "";
         }
-
-        if((keyH.spacePressed)&&(!missileFired)) {
-            missile.ResetMissile();
-            missileFired = true;
-        }
-
-
-        switch(direction){
-            case "up":
-                if(Y<=0){ direction = "";}
-                break;
-            case "down":
-                if(Y>=757-ship.getHeight()){ direction = "";}
-                break;
-            case "right":
-                if(X>=787-ship.getWidth()){direction = "";}
-                break;
-            case "left":
-                if(X<=0) {direction = "";}
-                break;
-        }
-
-        switch (direction) {
-            case "up" -> Y -= speed;
-            case "down" -> Y += speed;
-            case "left" -> X -= speed;
-            case "right" -> X += speed;
-        }
-
-        direction = "";
     }
 
     public int getShipX(){
@@ -123,9 +139,10 @@ public class Ship extends Entity{
             GamePanel.ShipAlive = false;
         }
         SHIP_LOST_A_LIFE = true;
+        GamePanel.SHIP_CANT_MOVE = true;
 
-        Y = 600;
-        X = 365;
+        Y = 590;
+        X = 350;
     }
 
 }

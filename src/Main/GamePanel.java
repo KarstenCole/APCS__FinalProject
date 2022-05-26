@@ -15,6 +15,9 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
 
     public final int SCREEN_HEIGHT = 800;
     public final int SCREEN_WIDTH = 800;
+
+    public static boolean SHIP_CANT_MOVE = false;
+
     final int FPS = 60;
     int fire = 0;
     int x = 0;
@@ -35,7 +38,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
 
     Thread gameThread;
 
-    boolean FLICKER;
+    public static boolean FLICKER;
 
     public GamePanel(JLabel Bg){
         this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));
@@ -77,6 +80,9 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
                     repaint();
                     delta--;
                     drawCount++;
+                    if(drawCount%30==0){
+                        FLICKER = !FLICKER;
+                    }
                 }
 
                 if (timer >= 1000000000) {
@@ -86,14 +92,14 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
                         enemyGrid.fireRandomMissile();
                         fire = 0;
                     }
-
-                    FLICKER = !FLICKER;
-
                     if (Ship.SHIP_LOST_A_LIFE){
                         x++;
+                        if(x>1){
+                            SHIP_CANT_MOVE = false;
+                        }
                         if(x>3){
                             Ship.SHIP_LOST_A_LIFE = false;
-                            x = 0;
+                            x=0;
                         }
                     }
 

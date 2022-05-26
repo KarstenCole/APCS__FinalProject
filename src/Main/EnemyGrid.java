@@ -12,7 +12,7 @@ public class EnemyGrid {
     public Enemy[][] enemies;
     Missile missile;
     Ship ship;
-    int Level = 1;
+    public static int Level = 1;
     Map map;
 
     public EnemyGrid(Missile missile, Ship s, Map map){
