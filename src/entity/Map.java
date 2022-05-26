@@ -78,10 +78,11 @@ public class Map extends Entity{
             g2d.drawImage(StartScreen, 0, 0, 800, 800, null);
 
         }else{
-
+            g2d.setColor(new Color(255, 255, 255));
+            g2d.setFont(font);
             g2d.drawImage(DeathScreen, 0, 0, 800, 800, null);
-            g2d.drawString("SCORE: "+score,30,55);
-            g2d.drawString("LEVEL: "+ EnemyGrid.Level,500,55);
+            g2d.drawString("SCORE: "+score,256,480);
+            g2d.drawString("LEVEL: "+ EnemyGrid.Level,256,550);
 
         }
     }
