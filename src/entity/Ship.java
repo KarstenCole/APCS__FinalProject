@@ -145,4 +145,9 @@ public class Ship extends Entity{
         X = 350;
     }
 
+    public void resetShip(){
+        X = 365;
+        Y = 600;
+    }
+
 }

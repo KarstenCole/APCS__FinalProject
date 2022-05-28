@@ -25,7 +25,7 @@ public class Enemy extends Entity{
     int MissileY=0;
     Ship ship;
 
-    public Enemy(int EnemyNum, int X, int Y, Missile missile, Ship ship){
+    public Enemy(int EnemyNum, int X, int Y, Missile missile, Ship ship, int Speed){
 
         this.X = X;
         this.Y = Y;
@@ -49,7 +49,7 @@ public class Enemy extends Entity{
 
         Alive = true;
 
-        speed = 1;
+        speed = Speed;
         getEnemies(EnemyNum);
     }
 
@@ -102,21 +102,21 @@ public class Enemy extends Entity{
             g2d.drawImage(Enemy, X, Y, WIDTH, HEIGHT, null);
 
             if (move) {
-                X += inc;
+                X += speed;
                 move = false;
-                downARow++;
+                downARow+=Math.abs(speed);
             } else {
                 move = true;
             }
-            if (downARow == 120) {
-                inc *= -1;
+            if (downARow >= 120) {
+                speed *= -1;
                 Y += 20;
                 downARow = 0;
             }
         }
         if(missileFired){
 
-            MissileY+=speed+1;
+            MissileY+=Math.abs(speed)+1;
 
             g2d.drawImage(Missile, MissileX,MissileY,null);
         }

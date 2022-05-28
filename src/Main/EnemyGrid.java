@@ -26,7 +26,7 @@ public class EnemyGrid {
             for(int y = 0; y<enemies[0].length; y++){
 
 
-                enemies[x][y] = new Enemy((int) (Math.random() * 4) + 1,(x*87),80 +(y*80), missile, ship);
+                enemies[x][y] = new Enemy((int) (Math.random() * 4) + 1,(x*87),80 +(y*80), missile, ship, 1);
 
             }
         }
@@ -161,14 +161,15 @@ public class EnemyGrid {
 
    public boolean checkForNewLevel(){
 
-       for(int x = 0; x<enemies.length; x++) {
+       for (Enemy[] enemy : enemies) {
            for (int y = 0; y < enemies[0].length; y++) {
-               if (enemies[x][y].Alive) {
-                    return false;
+               if (enemy[y].Alive) {
+                   return false;
                }
            }
        }
        startNewLevel();
+       ship.resetShip();
        return true;
 
    }
@@ -179,7 +180,7 @@ public class EnemyGrid {
            for(int y = 0; y<enemies[0].length; y++){
 
 
-               enemies[x][y] = new Enemy((int) (Math.random() * 4) + 1,(x*87),80 +(y*80), missile, ship);
+               enemies[x][y] = new Enemy((int) (Math.random() * 4) + 1,(x*87),80 +(y*80), missile, ship,Level/2+1);
 
            }
        }
