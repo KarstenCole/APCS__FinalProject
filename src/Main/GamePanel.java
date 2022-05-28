@@ -97,7 +97,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
                         if(x>1){
                             SHIP_CANT_MOVE = false;
                         }
-                        if(x>3){
+                        if(x>2){
                             Ship.SHIP_LOST_A_LIFE = false;
                             x=0;
                         }

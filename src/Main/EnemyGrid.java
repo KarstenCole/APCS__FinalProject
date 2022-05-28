@@ -42,6 +42,8 @@ public class EnemyGrid {
 
             checkAllHitboxes();
 
+            checkEnemiesDistance();
+
         }else {
             checkShipIntersection();
 
@@ -52,6 +54,8 @@ public class EnemyGrid {
             updateScore();
 
             checkForNewLevel();
+
+            checkEnemiesDistance();
         }
 
     }
@@ -187,4 +191,16 @@ public class EnemyGrid {
 
    }
 
+   public void checkEnemiesDistance(){
+
+   for(int x = 0; x<enemies.length; x++){
+       for(int y = 0; y<enemies[0].length; y++){
+           if(enemies[x][y].Y>=800&&enemies[x][y].Alive){
+               startNewLevel();
+               ship.loseALife();
+           }
+       }
+    }
+
+   }
 }
