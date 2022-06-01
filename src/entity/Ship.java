@@ -70,8 +70,18 @@ public class Ship extends Entity{
 
                 if (keyH.upPressed) {
                     direction = "up";
+                    if(keyH.rightPressed){
+                        direction = "up right";
+                    } else if(keyH.leftPressed){
+                        direction = "up left";
+                    }
                 } else if (keyH.downPressed) {
                     direction = "down";
+                    if(keyH.rightPressed){
+                        direction = "down right";
+                    } else if(keyH.leftPressed){
+                        direction = "down left";
+                    }
                 } else if (keyH.leftPressed) {
                     direction = "left";
                 } else if (keyH.rightPressed) {
@@ -107,6 +117,42 @@ public class Ship extends Entity{
                         direction = "";
                     }
                     break;
+                case "up right":
+                    if((Y <= 0)&&(X >= 787 - ship.getWidth())){
+                        direction = "";
+                    } else if((Y <= 0)){
+                        direction = "slow right";
+                    } else if(X >= 787 - ship.getWidth()){
+                        direction = "slow up";
+                    }
+                    break;
+                case "up left":
+                    if((Y <= 0)&&(X <= 0)){
+                        direction = "";
+                    } else if(Y <= 0){
+                        direction = "slow left";
+                    } else if(X <= 0){
+                        direction = "slow up";
+                    }
+                    break;
+                case "down right":
+                    if((Y >= 757 - ship.getHeight())&&(X >= 787 - ship.getWidth())){
+                        direction = "";
+                    } else if(X >= 787 - ship.getWidth()){
+                        direction = "slow down";
+                    } else if(Y >= 757 - ship.getHeight()){
+                        direction = "slow right";
+                    }
+                    break;
+                case "down left":
+                    if((Y >= 757 - ship.getHeight())&&(X <= 0)){
+                        direction = "";
+                    } else if(X <= 0){
+                        direction = "slow down";
+                    } else if(Y >= 757 - ship.getHeight()) {
+                        direction = "slow left";
+                    }
+                    break;
             }
 
             switch (direction) {
@@ -114,6 +160,26 @@ public class Ship extends Entity{
                 case "down" -> Y += speed;
                 case "left" -> X -= speed;
                 case "right" -> X += speed;
+                case "slow up" -> Y -= speed*3/4;
+                case "slow down" -> Y += speed*3/4;
+                case "slow left" -> X -= speed*3/4;
+                case "slow right" -> X += speed*3/4;
+                case "up right" -> {
+                    Y -= speed*3/4;
+                    X += speed*3/4;
+                }
+                case "up left" -> {
+                    Y -= speed*3/4;
+                    X -= speed*3/4;
+                }
+                case "down right" ->{
+                    Y += speed*3/4;
+                    X += speed*3/4;
+                }
+                case "down left" ->{
+                    Y += speed*3/4;
+                    X -= speed*3/4;
+                }
             }
 
             direction = "";
