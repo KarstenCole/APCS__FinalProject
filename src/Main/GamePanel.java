@@ -65,6 +65,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
             long currentTime;
             long timer = 0;
             int drawCount = 0;
+            int animationChange = 0;
 
 
             while (gameThread != null) {
@@ -82,6 +83,13 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
                     drawCount++;
                     if(drawCount%30==0){
                         FLICKER = !FLICKER;
+                    }
+                    if(Ship.SHIP_JUST_SHOT){
+                        animationChange++;
+                        if(animationChange == 10){
+                            ship.SHIP_JUST_SHOT = false;
+                            animationChange = 0;
+                        }
                     }
                 }
 

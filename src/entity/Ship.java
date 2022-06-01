@@ -19,6 +19,7 @@ public class Ship extends Entity{
     public static int HEIGHT;
     public static int LIVES = 3;
     public static boolean SHIP_LOST_A_LIFE = false;
+    public static boolean SHIP_JUST_SHOT = false;
 
 
     public Ship(KeyHandler keyH, Missile missile){
@@ -38,6 +39,7 @@ public class Ship extends Entity{
             ship = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Ship/APCS_Final_Ship.png")));
             map = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Maps/APCS_Final_Map.png")));
             shipWShield = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Ship/APCS_Final_ShipWShield.png")));
+            shipWFiring = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Ship/APCS_Final_ShipWFiring.png")));
 
         }catch(IOException e){
             e.printStackTrace();
@@ -48,7 +50,10 @@ public class Ship extends Entity{
         if(GamePanel.Running) {
             if(SHIP_LOST_A_LIFE){
                 g2d.drawImage(shipWShield, X - 15, Y - 10, WIDTH + 30, HEIGHT + 30, null);
-            }else {
+            }else if(SHIP_JUST_SHOT){
+                g2d.drawImage(shipWFiring, X, Y-20, WIDTH, HEIGHT+20, null);
+            }
+            else{
                 g2d.drawImage(ship, X, Y, WIDTH, HEIGHT, null);
             }
         }
@@ -92,6 +97,7 @@ public class Ship extends Entity{
                 if ((keyH.spacePressed) && (!missileFired)) {
                     missile.ResetMissile();
                     missileFired = true;
+                    SHIP_JUST_SHOT = true;
                 }
             }
 
