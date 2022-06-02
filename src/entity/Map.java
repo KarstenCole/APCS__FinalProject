@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -19,6 +21,7 @@ public class Map extends Entity{
     Font font;
     public int score;
     ArrayList<Enemy> deadEnemies = new ArrayList<>();
+
 
     public Map() {
         getMapImage();
@@ -81,8 +84,9 @@ public class Map extends Entity{
             g2d.setColor(new Color(255, 255, 255));
             g2d.setFont(font);
             g2d.drawImage(DeathScreen, 0, 0, 800, 800, null);
-            g2d.drawString("SCORE: "+score,256,480);
             g2d.drawString("LEVEL: "+ EnemyGrid.Level,256,550);
+            g2d.drawString("SCORE: "+score,256,480);
+
 
         }
     }

@@ -85,7 +85,7 @@ public class EnemyGrid {
             for (Enemy[] enemy : enemies) {
                 for (int y = 0; y < enemies[0].length; y++) {
 
-                    if(
+                    if((
 
                         ((ship.getShipX()>=enemy[y].X &&
                         ship.getShipX()<=enemy[y].X+ enemy[y].getWidth()) ||
@@ -98,7 +98,7 @@ public class EnemyGrid {
                         ship.getShipY()+ship.HEIGHT<=enemy[y].Y+enemy[y].getHeight()))
 
 
-                    ){
+                    )&&enemy[y].Alive){
 
                         ship.loseALife();
 
@@ -133,7 +133,7 @@ public class EnemyGrid {
 
         for(int x = 0; x<enemies.length; x++){
             for(int y = 0; y<enemies[0].length; y++) {
-            if(enemies[x][y].Alive){ return true; }
+            if(enemies[x][y].animation<6){ return true; }
             }
         }
 
@@ -202,5 +202,15 @@ public class EnemyGrid {
        }
     }
 
+   }
+
+   public void updateDyingAnimations(){
+       for(int x = 0; x<enemies.length; x++){
+           for(int y = 0; y<enemies[0].length; y++){
+               if(enemies[x][y].Alive == false){
+                   enemies[x][y].animation++;
+               }
+           }
+       }
    }
 }

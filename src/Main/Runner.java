@@ -2,6 +2,9 @@ package Main;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Runner {
     public static void main(String[] args){
@@ -14,7 +17,7 @@ public class Runner {
 
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setTitle("Final Project");
+        window.setTitle("Galaxy Shooter");
         window.setResizable(false);
         window.setIconImage(image.getImage());
 
@@ -28,5 +31,5 @@ public class Runner {
 
         gamePanel.startGameThread();
 
+        }
     }
-}

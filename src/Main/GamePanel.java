@@ -65,7 +65,8 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
             long currentTime;
             long timer = 0;
             int drawCount = 0;
-            int animationChange = 0;
+            int shipAnimationChange = 0;
+            int EnemyAnimationChange = 0;
 
 
             while (gameThread != null) {
@@ -81,15 +82,19 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
                     repaint();
                     delta--;
                     drawCount++;
+                    EnemyAnimationChange++;
                     if(drawCount%30==0){
                         FLICKER = !FLICKER;
                     }
                     if(Ship.SHIP_JUST_SHOT){
-                        animationChange++;
-                        if(animationChange == 10){
+                        shipAnimationChange++;
+                        if(shipAnimationChange == 10){
                             ship.SHIP_JUST_SHOT = false;
-                            animationChange = 0;
+                            shipAnimationChange = 0;
                         }
+                    }
+                    if(EnemyAnimationChange%6==0){
+                        enemyGrid.updateDyingAnimations();
                     }
                 }
 
