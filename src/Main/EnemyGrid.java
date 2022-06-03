@@ -133,7 +133,7 @@ public class EnemyGrid {
 
         for(int x = 0; x<enemies.length; x++){
             for(int y = 0; y<enemies[0].length; y++) {
-            if(enemies[x][y].animation<6){ return true; }
+            if(enemies[x][y].Alive){ return true; }
             }
         }
 

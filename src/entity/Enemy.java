@@ -1,9 +1,12 @@
 package entity;
 
+import org.w3c.dom.ls.LSOutput;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.Objects;
 
 public class Enemy extends Entity{
@@ -104,11 +107,11 @@ public class Enemy extends Entity{
             try {
                 Enemy = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy4/APCS_Final_Enemy4.png")));
                 Missile = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/EnemyMissiles/APCS_Final_Enemy4Missile.png")));
-                Animation1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy1/APCS_Final_Enemy1Animation1.png")));
-                Animation2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy1/APCS_Final_Enemy1Animation2.png")));
-                Animation3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy1/APCS_Final_Enemy1Animation3.png")));
-                Animation4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy1/APCS_Final_Enemy1Animation4.png")));
-                Animation5 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy1/APCS_Final_Enemy1Animation5.png")));
+                Animation1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy4/APCS_Final_Enemy4Animation1.png")));
+                Animation2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy4/APCS_Final_Enemy4Animation2.png")));
+                Animation3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy4/APCS_Final_Enemy4Animation3.png")));
+                Animation4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy4/APCS_Final_Enemy4Animation4.png")));
+                Animation5 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy4/APCS_Final_Enemy4Animation5.png")));
                 WIDTH = 60;
                 HEIGHT = 45;
             } catch (IOException e) {
@@ -228,10 +231,8 @@ public class Enemy extends Entity{
             MissileY <= ship.getShipY()+ship.getHeight())){
 
             ship.loseALife();
-
         }
 
 
     }
-
 }
