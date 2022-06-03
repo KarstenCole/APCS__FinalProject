@@ -167,7 +167,7 @@ public class EnemyGrid {
 
        for (Enemy[] enemy : enemies) {
            for (int y = 0; y < enemies[0].length; y++) {
-               if (enemy[y].Alive) {
+               if (enemy[y].Alive || enemy[y].animation<6) {
                    return false;
                }
            }

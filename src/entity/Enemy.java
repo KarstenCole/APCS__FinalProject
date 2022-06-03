@@ -72,13 +72,13 @@ public class Enemy extends Entity{
         }
         if(EnemyNum == 2) {
             try {
-                Enemy = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/APCS_Final_Enemy2.png")));
+                Enemy = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy2/APCS_Final_Enemy2.png")));
                 Missile = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/EnemyMissiles/APCS_Final_Enemy2Missile.png")));
-                Animation1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy1/APCS_Final_Enemy1Animation1.png")));
-                Animation2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy1/APCS_Final_Enemy1Animation2.png")));
-                Animation3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy1/APCS_Final_Enemy1Animation3.png")));
-                Animation4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy1/APCS_Final_Enemy1Animation4.png")));
-                Animation5 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy1/APCS_Final_Enemy1Animation5.png")));
+                Animation1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy2/APCS_Final_Enemy2Animation1.png")));
+                Animation2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy2/APCS_Final_Enemy2Animation2.png")));
+                Animation3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy2/APCS_Final_Enemy2Animation3.png")));
+                Animation4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy2/APCS_Final_Enemy2Animation4.png")));
+                Animation5 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy2/APCS_Final_Enemy2Animation5.png")));
                 WIDTH = 60;
                 HEIGHT = 60;
             } catch (IOException e) {
@@ -87,7 +87,7 @@ public class Enemy extends Entity{
         }
         if(EnemyNum == 3) {
             try {
-                Enemy = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/APCS_Final_Enemy3.png")));
+                Enemy = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy3/APCS_Final_Enemy3.png")));
                 Missile = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/EnemyMissiles/APCS_Final_Enemy3Missile.png")));
                 Animation1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy1/APCS_Final_Enemy1Animation1.png")));
                 Animation2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy1/APCS_Final_Enemy1Animation2.png")));
@@ -102,7 +102,7 @@ public class Enemy extends Entity{
         }
         if(EnemyNum == 4) {
             try {
-                Enemy = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/APCS_Final_Enemy4.png")));
+                Enemy = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy4/APCS_Final_Enemy4.png")));
                 Missile = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/EnemyMissiles/APCS_Final_Enemy4Missile.png")));
                 Animation1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy1/APCS_Final_Enemy1Animation1.png")));
                 Animation2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Enemies/Enemy1/APCS_Final_Enemy1Animation2.png")));
