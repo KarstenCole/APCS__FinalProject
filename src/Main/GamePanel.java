@@ -93,7 +93,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
                             shipAnimationChange = 0;
                         }
                     }
-                    if(EnemyAnimationChange%6==0){
+                    if(EnemyAnimationChange%4==0){
                         enemyGrid.updateDyingAnimations();
                     }
                 }
