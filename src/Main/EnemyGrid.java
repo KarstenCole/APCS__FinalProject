@@ -179,6 +179,7 @@ public class EnemyGrid {
    }
 
    public void startNewLevel(){
+        missile.HitEnemy();
         Level++;
        for(int x = 0; x<enemies.length; x++){
            for(int y = 0; y<enemies[0].length; y++){
