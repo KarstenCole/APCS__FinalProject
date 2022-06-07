@@ -1,10 +1,6 @@
 package Main;
 
 import javax.swing.*;
-import java.awt.*;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 
 public class Runner {
     public static void main(String[] args){

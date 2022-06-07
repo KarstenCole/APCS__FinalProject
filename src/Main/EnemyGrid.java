@@ -117,7 +117,7 @@ public class EnemyGrid {
 
                 if (enemies[randomInt][i].Alive) {
 
-                    System.out.print(randomInt + ", " + i);
+                    //System.out.print(randomInt + ", " + i);
                     enemies[randomInt][i].shootMissile();
                     return true;
 

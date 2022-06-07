@@ -4,8 +4,15 @@ import entity.Map;
 import entity.Missile;
 import entity.Ship;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -56,6 +63,8 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
         gameThread = new Thread(this);
         gameThread.start();
     }
+
+    // Game loop that runs the entire game, and executes all the methods.
 
     @Override
     public void run() {
@@ -116,7 +125,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
                         }
                     }
 
-                    System.out.println("FPS: " + drawCount);
+                    //System.out.println("FPS: " + drawCount);
                     drawCount = 0;
                     timer = 0;
                 }
